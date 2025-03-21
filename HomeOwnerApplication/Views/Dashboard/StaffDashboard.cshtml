@@ -1,0 +1,204 @@
+﻿@{
+    ViewData["Title"] = "Staff Dashboard";
+    var currentTime = ViewBag.CurrentTime;
+    var currentUser = ViewBag.CurrentUser;
+    var userName = ViewBag.UserName;
+}
+
+<div class="container-fluid">
+    <div class="row">
+        <!-- Staff Sidebar -->
+        <nav id="sidebar" class="col-md-3 col-lg-2 d-md-block bg-info sidebar">
+            <div class="position-sticky pt-3">
+                <div class="text-center mb-4">
+                    <img src="~/images/staff-avatar.png" alt="Staff" class="rounded-circle" width="64" height="64">
+                    <h6 class="text-white mt-2">@userName</h6>
+                    <span class="badge bg-light text-dark">Staff</span>
+                </div>
+                <ul class="nav flex-column">
+                    <li class="nav-item">
+                        <a class="nav-link active text-white" href="#">
+                            <i class="bi bi-speedometer2"></i> Dashboard
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="#">
+                            <i class="bi bi-tools"></i> Service Requests
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="#">
+                            <i class="bi bi-calendar-check"></i> Facility Schedule
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="#">
+                            <i class="bi bi-clipboard-check"></i> Tasks
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="#">
+                            <i class="bi bi-chat"></i> Messages
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+
+        <!-- Main content -->
+        <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+            <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                <h1 class="h2">Staff Dashboard</h1>
+                <div class="btn-toolbar mb-2 mb-md-0">
+                    <div class="btn-group me-2">
+                        <span class="text-muted">@currentTime.ToString("yyyy-MM-dd HH:mm:ss")</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Staff Stats -->
+            <div class="row">
+                <div class="col-xl-3 col-md-6 mb-4">
+                    <div class="card border-left-primary shadow h-100 py-2">
+                        <div class="card-body">
+                            <div class="row no-gutters align-items-center">
+                                <div class="col mr-2">
+                                    <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                        Pending Requests
+                                    </div>
+                                    <div class="h5 mb-0 font-weight-bold text-gray-800">15</div>
+                                </div>
+                                <div class="col-auto">
+                                    <i class="bi bi-clock-history fa-2x text-gray-300"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-xl-3 col-md-6 mb-4">
+                    <div class="card border-left-success shadow h-100 py-2">
+                        <div class="card-body">
+                            <div class="row no-gutters align-items-center">
+                                <div class="col mr-2">
+                                    <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                                        Completed Tasks
+                                    </div>
+                                    <div class="h5 mb-0 font-weight-bold text-gray-800">45</div>
+                                </div>
+                                <div class="col-auto">
+                                    <i class="bi bi-check-circle fa-2x text-gray-300"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-xl-3 col-md-6 mb-4">
+                    <div class="card border-left-info shadow h-100 py-2">
+                        <div class="card-body">
+                            <div class="row no-gutters align-items-center">
+                                <div class="col mr-2">
+                                    <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
+                                        Today's Schedule
+                                    </div>
+                                    <div class="h5 mb-0 font-weight-bold text-gray-800">8</div>
+                                </div>
+                                <div class="col-auto">
+                                    <i class="bi bi-calendar-day fa-2x text-gray-300"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-xl-3 col-md-6 mb-4">
+                    <div class="card border-left-warning shadow h-100 py-2">
+                        <div class="card-body">
+                            <div class="row no-gutters align-items-center">
+                                <div class="col mr-2">
+                                    <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
+                                        New Messages
+                                    </div>
+                                    <div class="h5 mb-0 font-weight-bold text-gray-800">3</div>
+                                </div>
+                                <div class="col-auto">
+                                    <i class="bi bi-envelope fa-2x text-gray-300"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Staff Tasks -->
+            <div class="row mt-4">
+                <div class="col-12 col-xl-8 mb-4">
+                    <div class="card shadow">
+                        <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                            <h6 class="m-0 font-weight-bold text-primary">Today's Tasks</h6>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th>Time</th>
+                                            <th>Task</th>
+                                            <th>Location</th>
+                                            <th>Status</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>09:00 AM</td>
+                                            <td>Facility Inspection</td>
+                                            <td>Swimming Pool</td>
+                                            <td><span class="badge bg-success">Completed</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td>11:00 AM</td>
+                                            <td>Maintenance Check</td>
+                                            <td>Block A</td>
+                                            <td><span class="badge bg-warning">In Progress</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td>02:00 PM</td>
+                                            <td>Service Request</td>
+                                            <td>Unit 205</td>
+                                            <td><span class="badge bg-info">Pending</span></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-12 col-xl-4 mb-4">
+                    <div class="card shadow">
+                        <div class="card-header py-3">
+                            <h6 class="m-0 font-weight-bold text-primary">Quick Actions</h6>
+                        </div>
+                        <div class="card-body">
+                            <div class="d-grid gap-2">
+                                <button class="btn btn-primary" type="button">
+                                    <i class="bi bi-plus-circle"></i> Create Service Report
+                                </button>
+                                <button class="btn btn-info" type="button">
+                                    <i class="bi bi-calendar-plus"></i> Schedule Task
+                                </button>
+                                <button class="btn btn-success" type="button">
+                                    <i class="bi bi-check2-circle"></i> Mark Task Complete
+                                </button>
+                                <button class="btn btn-warning" type="button">
+                                    <i class="bi bi-exclamation-circle"></i> Report Issue
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
