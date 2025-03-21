@@ -1,0 +1,131 @@
+﻿@model HomeOwnerApplication.ViewModels.AdminDashboardViewModel
+@{
+    ViewData["Title"] = "Admin Dashboard";
+    var currentTime = DateTime.Parse("2025-03-20 21:03:31");
+}
+
+<div class="container-fluid py-4">
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="card bg-primary text-white">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div>
+                            <h4 class="mb-0">Welcome, @Model.AdminName!</h4>
+                            <small>Last access: @Model.LastAccessTime.ToString("yyyy-MM-dd HH:mm:ss UTC")</small>
+                        </div>
+                        <div class="text-end">
+                            <h6 class="mb-0">Current Time (UTC)</h6>
+                            <h4 class="mb-0">@currentTime.ToString("HH:mm:ss")</h4>
+                            <small>@currentTime.ToString("yyyy-MM-dd")</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row g-4 mb-4">
+        <div class="col-md-4">
+            <div class="card h-100 border-0 shadow-sm">
+                <div class="card-body">
+                    <div class="d-flex align-items-center">
+                        <div class="flex-shrink-0 me-3">
+                            <i class="bi bi-people-fill text-primary" style="font-size: 2.5rem;"></i>
+                        </div>
+                        <div>
+                            <h6 class="card-title mb-0">Total Users</h6>
+                            <h2 class="mb-0">@Model.TotalUsers</h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card h-100 border-0 shadow-sm">
+                <div class="card-body">
+                    <div class="d-flex align-items-center">
+                        <div class="flex-shrink-0 me-3">
+                            <i class="bi bi-house-fill text-success" style="font-size: 2.5rem;"></i>
+                        </div>
+                        <div>
+                            <h6 class="card-title mb-0">Home Owners</h6>
+                            <h2 class="mb-0">@Model.TotalHomeOwners</h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card h-100 border-0 shadow-sm">
+                <div class="card-body">
+                    <div class="d-flex align-items-center">
+                        <div class="flex-shrink-0 me-3">
+                            <i class="bi bi-person-badge-fill text-info" style="font-size: 2.5rem;"></i>
+                        </div>
+                        <div>
+                            <h6 class="card-title mb-0">Staff Members</h6>
+                            <h2 class="mb-0">@Model.TotalStaff</h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-8 mb-4">
+            <div class="card border-0 shadow-sm">
+                <div class="card-header bg-white border-0">
+                    <h5 class="card-title mb-0">Recent Activities</h5>
+                </div>
+                <div class="card-body">
+                    <div class="list-group list-group-flush">
+                        @foreach (var activity in Model.RecentActivities)
+                        {
+                            <div class="list-group-item border-0 px-0">
+                                <div class="d-flex align-items-center">
+                                    <div class="flex-shrink-0 me-3">
+                                        <div class="bg-light rounded-circle p-2">
+                                            <i class="bi bi-clock-history text-primary"></i>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <p class="mb-0">@activity</p>
+                                        <small class="text-muted">@currentTime.ToString("yyyy-MM-dd HH:mm:ss UTC")</small>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4 mb-4">
+            <div class="card border-0 shadow-sm">
+                <div class="card-header bg-white border-0">
+                    <h5 class="card-title mb-0">Quick Actions</h5>
+                </div>
+                <div class="card-body">
+                    <div class="d-grid gap-2">
+                        <a asp-action="CreateUser" class="btn btn-primary">
+                            <i class="bi bi-person-plus-fill me-2"></i>Create New User
+                        </a>
+                        <a asp-action="Index" class="btn btn-outline-primary">
+                            <i class="bi bi-people-fill me-2"></i>Manage Users
+                        </a>
+                        <a href="#" class="btn btn-outline-primary">
+                            <i class="bi bi-gear-fill me-2"></i>System Settings
+                        </a>
+                        <a href="#" class="btn btn-outline-primary">
+                            <i class="bi bi-file-text-fill me-2"></i>View Reports
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

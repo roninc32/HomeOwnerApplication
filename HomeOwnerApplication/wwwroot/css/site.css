@@ -1,0 +1,124 @@
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
+  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  margin-bottom: 60px;
+}
+.card {
+    transition: transform 0.2s;
+    margin-bottom: 1rem;
+}
+
+    .card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+
+.quick-actions .list-group-item {
+    transition: background-color 0.2s;
+}
+
+    .quick-actions .list-group-item:hover {
+        background-color: #f8f9fa;
+    }
+
+.admin-stats {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #0d6efd;
+}
+:root {
+    --primary-color: #0d6efd;
+    --secondary-color: #6c757d;
+    --success-color: #198754;
+    --info-color: #0dcaf0;
+}
+
+.bg-gradient {
+    background: linear-gradient(180deg, rgba(13,110,253,1) 0%, rgba(11,94,215,1) 100%);
+}
+
+.feature-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.card {
+    transition: transform 0.2s;
+}
+
+    .card:hover {
+        transform: translateY(-5px);
+    }
+
+.shadow-sm {
+    box-shadow: 0 .125rem .25rem rgba(0,0,0,.075) !important;
+}
+
+.shadow-lg {
+    box-shadow: 0 1rem 3rem rgba(0,0,0,.175) !important;
+}
+
+/* Login page specific styles */
+.min-vh-100 {
+    min-height: 100vh;
+}
+
+/* Dashboard specific styles */
+.dashboard-stat {
+    border-radius: 1rem;
+    padding: 1.5rem;
+}
+
+.stat-icon {
+    width: 4rem;
+    height: 4rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+}
+
+/* Activity list styles */
+.activity-item {
+    padding: 1rem;
+    border-left: 4px solid var(--primary-color);
+    margin-bottom: 1rem;
+    background-color: rgba(13,110,253,0.05);
+}
+
+/* Custom button styles */
+.btn-primary {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+}
+
+    .btn-primary:hover {
+        background-color: #0b5ed7;
+        border-color: #0a58ca;
+    }
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .dashboard-stat {
+        margin-bottom: 1rem;
+    }
+}

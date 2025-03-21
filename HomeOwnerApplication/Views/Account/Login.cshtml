@@ -1,0 +1,119 @@
+﻿@model HomeOwnerApplication.ViewModels.LoginViewModel
+@{
+    ViewData["Title"] = "Login";
+    Layout = "_LoginLayout";
+    var currentTime = DateTime.Parse("2025-03-20 21:14:19");
+}
+
+<div class="container-fluid min-vh-100">
+    <div class="row min-vh-100">
+        <!-- Left side - Welcome message -->
+        <div class="col-md-8 d-none d-md-flex bg-primary bg-gradient">
+            <div class="container d-flex align-items-center">
+                <div class="text-white px-5">
+                    <h1 class="display-4 fw-bold">Welcome Back!</h1>
+                    <p class="lead">Sign in to access your HomeOwners Association portal.</p>
+                    <div class="mt-5">
+                        <h5 class="fw-light">Manage Your Property:</h5>
+                        <ul class="list-unstyled">
+                            <li><i class="bi bi-check-circle-fill me-2"></i>View Community Updates</li>
+                            <li><i class="bi bi-check-circle-fill me-2"></i>Submit Maintenance Requests</li>
+                            <li><i class="bi bi-check-circle-fill me-2"></i>Access Important Documents</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Right side - Login form -->
+        <div class="col-md-4 d-flex align-items-center">
+            <div class="container">
+                <div class="card shadow-lg border-0">
+                    <div class="card-body p-5">
+                        <div class="text-center mb-4">
+                            <img src="~/images/logo.svg" alt="HOA Logo" class="mb-3" height="60" />
+                            <h2 class="fw-bold">Sign In</h2>
+                            <p class="text-muted">Access your account</p>
+                        </div>
+
+                        <form asp-action="Login" asp-controller="Account" method="post">
+                            @Html.AntiForgeryToken()
+                            <div asp-validation-summary="ModelOnly" class="alert alert-danger"></div>
+
+                            <input type="hidden" asp-for="ReturnUrl" />
+                            <input type="hidden" asp-for="LoginAttemptTime" value="@currentTime" />
+
+                            <div class="form-floating mb-3">
+                                <input asp-for="Email" class="form-control" placeholder="name@example.com" autocomplete="username" />
+                                <label asp-for="Email">Email address</label>
+                                <span asp-validation-for="Email" class="text-danger"></span>
+                            </div>
+
+                            <div class="form-floating mb-3">
+                                <input asp-for="Password" class="form-control" placeholder="Password" autocomplete="current-password" />
+                                <label asp-for="Password">Password</label>
+                                <span asp-validation-for="Password" class="text-danger"></span>
+                            </div>
+
+                            <div class="form-check mb-3">
+                                <input asp-for="RememberMe" class="form-check-input" />
+                                <label asp-for="RememberMe" class="form-check-label">Remember me</label>
+                            </div>
+
+                            <div class="d-grid gap-2">
+                                <button type="submit" class="btn btn-primary btn-lg">
+                                    <i class="bi bi-box-arrow-in-right me-2"></i>Sign In
+                                </button>
+                            </div>
+
+                            <div class="text-center mt-3">
+                                <a asp-action="ForgotPassword" asp-controller="Account" class="text-decoration-none">
+                                    <i class="bi bi-question-circle me-1"></i>Forgot Password?
+                                </a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <div class="text-center mt-4">
+                    <p class="text-muted">
+                        Don't have an account?
+                        <a asp-action="Register" asp-controller="Account" class="text-decoration-none">Create one</a>
+                    </p>
+                    <small class="text-muted">
+                        Current Time (UTC): @currentTime.ToString("yyyy-MM-dd HH:mm:ss")
+                    </small>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+    <script>
+        $(document).ready(function () {
+            // Prevent double form submission
+            $('form').submit(function () {
+                $(this).find(':submit').prop('disabled', true);
+                $(this).find(':submit').html('<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Signing in...');
+            });
+
+            // Focus email field on page load
+            $('#Email').focus();
+
+            // Show/hide password toggle
+            $('.show-password').click(function () {
+                var input = $(this).closest('.input-group').find('input');
+                var icon = $(this).find('i');
+                if (input.attr('type') === 'password') {
+                    input.attr('type', 'text');
+                    icon.removeClass('bi-eye').addClass('bi-eye-slash');
+                } else {
+                    input.attr('type', 'password');
+                    icon.removeClass('bi-eye-slash').addClass('bi-eye');
+                }
+            });
+        });
+    </script>
+}
